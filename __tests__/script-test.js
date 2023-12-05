@@ -2,7 +2,7 @@
 // 🔥 DO NOT MODIFY THIS FILE!!!!! 🔥
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-const { fireEvent, getByText, queryByText, getByTestId } = require('@testing-library/dom')
+const { fireEvent, getByText, queryByText, getByTestId, configure } = require('@testing-library/dom')
 require('@testing-library/jest-dom')
 const { JSDOM } = require('jsdom')
 
@@ -17,6 +17,16 @@ let dom
 let container
 
 describe(`Weekend Salary Calculator:`, () => {
+  // to limit verbosity in error message
+  configure({
+    getElementError: (message, container) => {
+      const error = new Error(message);
+      error.name = 'TestingLibraryElementError';
+      error.stack = error.stack.substring(0,150);
+      return error;
+    },
+  });
+  
   beforeAll(() => {
     // Silence console.log statements while the tests run:
     console.log = () => {}
