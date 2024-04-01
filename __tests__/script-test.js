@@ -157,6 +157,9 @@ describe(`Weekend Salary Calculator:`, () => {
 
   it(`Applies the 'over-budget' CSS class to the footer when the total monthly salary exceeds $20,000`, () => {
     const footer = container.querySelector('footer')
+    //To make sure its not hardcoded
+    expect(footer).not.toHaveClass('over-budget')
+
     
     submitEmployee(container, testEmployees[0])
     submitEmployee(container, testEmployees[1])
