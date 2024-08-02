@@ -9,8 +9,10 @@ const { JSDOM } = require('jsdom')
 const fs = require('fs')
 const path = require('path')
 
+const findInnerText = /\binnerText\b/g
+
 const htmlFile = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8')
-const jsFile = fs.readFileSync(path.resolve(__dirname, '../script.js'), 'utf8')
+const jsFile = fs.readFileSync(path.resolve(__dirname, '../script.js'), 'utf8').replace(findInnerText, 'textContent')
 
 
 let dom
